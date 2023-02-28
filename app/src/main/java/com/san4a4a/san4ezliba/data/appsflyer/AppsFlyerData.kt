@@ -5,8 +5,9 @@ import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@ActivityRetainedScoped
+@Singleton
 class AppsFlyerData @Inject constructor(){
     private val _appsData = MutableSharedFlow<Map<String, Any?>?> (
         replay = 1,
