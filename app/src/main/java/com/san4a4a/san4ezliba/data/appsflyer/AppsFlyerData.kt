@@ -1,6 +1,5 @@
 package com.san4a4a.san4ezliba.data.appsflyer
 
-import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
