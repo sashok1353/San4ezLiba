@@ -7,48 +7,20 @@ class CreateLinkUseCase @Inject constructor(
     private val makeSubsLine: MakeSubsLineUseCase
 ) {
     operator fun invoke(
+        domain: String,
         subsList: List<String>?,
-        gaid: String?,
-        campaign: String?,
-        appsId: String?,
-        adb: Boolean,
-        battery: Double,
-        push: String?,
-        accountId: String?,
-        afChannel: String?,
-        campaignId: String?,
-        adId: String?,
-        adSet: String?,
-        mediaSource: String?,
-        afStatus: String?,
-        afAd: String?,
-        adsetId: String?,
-        appsKey: String?,
-        facebookId: String?,
-        facebookToken: String
+        attributesMap: Map<String, String>
     ) : String {
         val link = StringBuilder().apply {
-            append(encrypt("kwwsv://dydqfln.frp?"))
+            append(encrypt(domain))
             append(makeSubsLine(subsList))
-            append("${encrypt("fdpsdljq")}=$campaign&")
-            append("${encrypt("dffrxqw_lg")}=$accountId&")
-            append("${encrypt("jrrjoh_dglg")}=$gaid&")
-            append("${encrypt("di_xvhulg")}=$appsId&")
-            append("${encrypt("phgld_vrxufh")}=$mediaSource&")
-            append("${encrypt("di_fkdqqho")}=$afChannel&")
-            append("${encrypt("di_vwdwxv")}=$afStatus&")
-            append("${encrypt("dge")}=$adb&")
-            append("${encrypt("edwwhuB")}=$battery&")
-            append("${encrypt("di_dg")}=$afAd&")
-            append("${encrypt("fdpsdljq_lg")}=$campaignId&")
-            append("${encrypt("dgvhw_lg")}=$adsetId&")
-            append("${encrypt("dg_lg")}=$adId&")
-            append("${encrypt("dgvhw")}=$adSet&")
-            append("${encrypt("exqgoh")}=com.yoozoogames.fwga&")
-            append("${encrypt("sxvk")}=$push&")
-            append("${encrypt("ghy_nhB")}=$appsKey&")
-            append("${encrypt("ie_dss_lg")}=$facebookId&")
-            append("${encrypt("ie_dw")}=$facebookToken")
+            attributesMap.forEach { (key, value) ->
+                if(encrypt(key) == "fb_at") {
+                    append("${encrypt(key)}=$value")
+                } else {
+                    append("${encrypt(key)}=$value&")
+                }
+            }
         }
         return link.toString()
     }
