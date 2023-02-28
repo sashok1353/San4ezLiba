@@ -10,7 +10,7 @@ fun String.getDataFromMap(map: Map<String, Any?>?) : String?{
     }
 }
 
-private fun Any?.encode(): String {
+private fun String?.encode(): String {
     return runCatching {
         URLEncoder.encode(this.toString(), "utf-8")
     }.getOrElse { "null" }
