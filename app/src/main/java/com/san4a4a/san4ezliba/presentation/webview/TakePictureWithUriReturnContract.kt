@@ -7,10 +7,11 @@ import android.net.Uri
 import android.provider.MediaStore
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.annotation.CallSuper
+import javax.inject.Inject
 
-class TakePictureWithUriReturnContract : ActivityResultContract<Uri, Pair<Boolean, Uri>>() {
+class TakePictureWithUriReturnContract @Inject constructor(): ActivityResultContract<Uri, Pair<Boolean, Uri>>() {
 
-    private var imageUri: Uri? = null
+    private lateinit var imageUri: Uri
 
     @CallSuper
     override fun createIntent(context: Context, input: Uri): Intent {
@@ -25,6 +26,6 @@ class TakePictureWithUriReturnContract : ActivityResultContract<Uri, Pair<Boolea
 
     @Suppress("AutoBoxing")
     override fun parseResult(resultCode: Int, intent: Intent?): Pair<Boolean, Uri> {
-        return (resultCode == Activity.RESULT_OK) to imageUri!!
+        return (resultCode == Activity.RESULT_OK) to imageUri
     }
 }

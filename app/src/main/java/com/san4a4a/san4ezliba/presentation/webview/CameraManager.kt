@@ -17,6 +17,7 @@ import javax.inject.Inject
 
 class CameraManager @Inject constructor(
     @ApplicationContext private val context: Context,
+    private var takePictureWithUriReturnContract: TakePictureWithUriReturnContract,
     private val registry: ActivityResultRegistry,
     private val customWebChromeClient: CustomWebChromeClient
 ) {
@@ -47,7 +48,7 @@ class CameraManager @Inject constructor(
     private fun initCameraLauncher() {
         cameraLauncher = registry.register(
             REGISTRY_KEY,
-            TakePictureWithUriReturnContract()
+            takePictureWithUriReturnContract
         ) { (success, imageUri) ->
             if (success) {
                 customWebChromeClient.mFilePathCallback?.onReceiveValue(arrayOf(imageUri))
