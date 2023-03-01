@@ -18,7 +18,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class CustomWebChromeClient @Inject constructor(@ApplicationContext private val context: Context, private val photoChooser: PhotoChooserUseCase) : WebChromeClient() {
 
     var mFilePathCallback: ValueCallback<Array<Uri>>? = null
