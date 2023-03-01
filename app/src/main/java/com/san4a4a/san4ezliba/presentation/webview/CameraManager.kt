@@ -23,7 +23,8 @@ class CameraManager @Inject constructor(
 ) {
 
     companion object {
-        private const val REGISTRY_KEY = "Take photo"
+        private const val CAMERA_KEY = "Take photo from camera"
+        private const val GALLERY_KEY = "Take photo from gallery"
     }
 
     private var galleryLauncher: ActivityResultLauncher<Array<String>>? = null
@@ -36,7 +37,7 @@ class CameraManager @Inject constructor(
 
     private fun initGalleryLauncher() {
         galleryLauncher =
-            registry.register(REGISTRY_KEY, ActivityResultContracts.OpenDocument()) { uri ->
+            registry.register(GALLERY_KEY, ActivityResultContracts.OpenDocument()) { uri ->
                 if (uri != null) {
                     customWebChromeClient.mFilePathCallback?.onReceiveValue(arrayOf(uri))
                 } else {
@@ -47,7 +48,7 @@ class CameraManager @Inject constructor(
 
     private fun initCameraLauncher() {
         cameraLauncher = registry.register(
-            REGISTRY_KEY,
+            CAMERA_KEY,
             takePictureWithUriReturnContract
         ) { (success, imageUri) ->
             if (success) {
