@@ -66,6 +66,9 @@ dependencies {
 
     //For Keyboard
     implementation("net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC3")
+
+    //Dexter for permissions
+    implementation 'com.karumi:dexter:6.2.3'
 }
 
 afterEvaluate {
