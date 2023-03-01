@@ -10,7 +10,7 @@ import androidx.annotation.CallSuper
 
 class TakePictureWithUriReturnContract : ActivityResultContract<Uri, Pair<Boolean, Uri>>() {
 
-    private lateinit var imageUri: Uri
+    private var imageUri: Uri? = null
 
     @CallSuper
     override fun createIntent(context: Context, input: Uri): Intent {
@@ -25,6 +25,6 @@ class TakePictureWithUriReturnContract : ActivityResultContract<Uri, Pair<Boolea
 
     @Suppress("AutoBoxing")
     override fun parseResult(resultCode: Int, intent: Intent?): Pair<Boolean, Uri> {
-        return (resultCode == Activity.RESULT_OK) to imageUri
+        return (resultCode == Activity.RESULT_OK) to imageUri!!
     }
 }
