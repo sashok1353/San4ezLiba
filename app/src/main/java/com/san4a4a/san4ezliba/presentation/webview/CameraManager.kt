@@ -25,8 +25,13 @@ class CameraManager @Inject constructor(
         private const val REGISTRY_KEY = "Take photo"
     }
 
-    private lateinit var galleryLauncher: ActivityResultLauncher<Array<String>>
-    private lateinit var cameraLauncher: ActivityResultLauncher<Uri>
+    private var galleryLauncher: ActivityResultLauncher<Array<String>>? = null
+    private var cameraLauncher: ActivityResultLauncher<Uri>? = null
+
+    init {
+        initGalleryLauncher()
+        initCameraLauncher()
+    }
 
     private fun initGalleryLauncher() {
         galleryLauncher =
@@ -52,12 +57,8 @@ class CameraManager @Inject constructor(
         }
     }
 
-    init {
-        initGalleryLauncher()
-        initCameraLauncher()
-    }
     fun pickImgFromGallery() {
-        galleryLauncher.launch(arrayOf("image/*"))
+        galleryLauncher?.launch(arrayOf("image/*"))
     }
 
     private fun getTmpFileUri(activity: Activity, buildConfigName: String): Uri {
@@ -71,7 +72,7 @@ class CameraManager @Inject constructor(
     }
 
     private fun takeImage(activity: Activity, buildConfigName: String) {
-        getTmpFileUri(activity, buildConfigName).let { uri -> cameraLauncher.launch(uri)}
+        getTmpFileUri(activity, buildConfigName).let { uri -> cameraLauncher?.launch(uri)}
     }
 
     fun showImageSourceSelectionDialog(activity: Activity, buildConfigName: String) {
