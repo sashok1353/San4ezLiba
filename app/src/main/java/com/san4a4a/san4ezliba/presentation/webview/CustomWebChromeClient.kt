@@ -14,13 +14,13 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.san4a4a.san4ezliba.domain.use_cases.PhotoChooserUseCase
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@ActivityRetainedScoped
 class CustomWebChromeClient @Inject constructor(@ApplicationContext private val context: Context, private val photoChooser: PhotoChooserUseCase) : WebChromeClient() {
 
     var mFilePathCallback: ValueCallback<Array<Uri>>? = null
