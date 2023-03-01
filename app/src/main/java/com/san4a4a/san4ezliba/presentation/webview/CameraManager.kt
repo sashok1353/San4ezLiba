@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
+import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.ActivityResultRegistry
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,7 +19,7 @@ import javax.inject.Inject
 class CameraManager @Inject constructor(
     @ApplicationContext private val context: Context,
     private var takePictureWithUriReturnContract: TakePictureWithUriReturnContract,
-    private val registry: ActivityResultRegistry,
+    private val activity: ComponentActivity,
     private val customWebChromeClient: CustomWebChromeClient
 ) {
 
@@ -37,7 +38,7 @@ class CameraManager @Inject constructor(
 
     private fun initGalleryLauncher() {
         galleryLauncher =
-            registry.register(GALLERY_KEY, ActivityResultContracts.OpenDocument()) { uri ->
+            activity.activityResultRegistry.register(GALLERY_KEY, ActivityResultContracts.OpenDocument()) { uri ->
                 if (uri != null) {
                     customWebChromeClient.mFilePathCallback?.onReceiveValue(arrayOf(uri))
                 } else {
@@ -47,7 +48,7 @@ class CameraManager @Inject constructor(
     }
 
     private fun initCameraLauncher() {
-        cameraLauncher = registry.register(
+        cameraLauncher = activity.activityResultRegistry.register(
             CAMERA_KEY,
             takePictureWithUriReturnContract
         ) { (success, imageUri) ->
