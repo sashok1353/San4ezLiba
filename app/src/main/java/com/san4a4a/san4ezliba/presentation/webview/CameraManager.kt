@@ -19,9 +19,11 @@ import javax.inject.Inject
 class CameraManager @Inject constructor(
     @ApplicationContext private val context: Context,
     private var takePictureWithUriReturnContract: TakePictureWithUriReturnContract,
-    private val activity: ComponentActivity,
-    private val customWebChromeClient: CustomWebChromeClient
+    private val customWebChromeClient: CustomWebChromeClient,
+    activity: Activity,
 ) {
+
+    private val activity: ComponentActivity = activity as ComponentActivity
 
     companion object {
         private const val CAMERA_KEY = "Take photo from camera"
