@@ -46,7 +46,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // AppsFlyer
-    implementation "com.appsflyer:af-android-sdk:6.9.3"
+    implementation "com.appsflyer:af-android-sdk:6.9.4"
 
     // Facebook
     implementation "com.facebook.android:facebook-android-sdk:16.0.0"
@@ -61,11 +61,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
 
     // Hilt
-    implementation "com.google.dagger:hilt-android:2.44.2"
-    kapt "com.google.dagger:hilt-compiler:2.44.2"
-
-    //For Keyboard
-    implementation("net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:3.0.0-RC3")
+    implementation "com.google.dagger:hilt-android:2.45"
+    kapt "com.google.dagger:hilt-compiler:2.45"
 
     //Dexter for permissions
     implementation 'com.karumi:dexter:6.2.3'

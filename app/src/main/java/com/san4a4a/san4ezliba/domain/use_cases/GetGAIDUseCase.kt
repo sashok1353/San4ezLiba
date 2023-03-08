@@ -24,6 +24,9 @@ class GetGAIDUseCase @Inject constructor(@ApplicationContext private val context
             } catch (e: IOException) {
                 e.printStackTrace()
                 null
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
             }
         }
     }
