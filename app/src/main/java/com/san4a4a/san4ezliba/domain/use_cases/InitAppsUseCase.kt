@@ -10,11 +10,9 @@ import javax.inject.Inject
 
 class InitAppsUseCase @Inject constructor(@ApplicationContext private val context: Context,
 private val conversionListener: AppsFlyerConversionListener) {
-    suspend operator fun invoke(appsId: String) {
-        withContext(Dispatchers.IO) {
-            AppsFlyerLib.getInstance()
-                .init(appsId, conversionListener.conversionListener, context)
-                .start(context)
-        }
+    operator fun invoke(appsId: String) {
+        AppsFlyerLib.getInstance()
+            .init(appsId, conversionListener.conversionListener, context)
+            .start(context)
     }
 }
